@@ -25,7 +25,7 @@ public class Process {
 	
 	public void purchaseProcess(String baseUrl, String product, String quantity) throws InterruptedException {
 		this.enterSite(baseUrl);
-		
+		catalog.ClickProduct(product, wait);
 	}
 	
 	public void enterSite (String url) {

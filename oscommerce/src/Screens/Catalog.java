@@ -21,7 +21,9 @@ public class Catalog {
 
 
 	public void ClickProduct(String product, WebDriverWait wait) {
-		
+		WebElement productLink = driver.findElement(By.cssSelector("[data-id='29']"));
+	    wait.until(ExpectedConditions.elementToBeClickable(productLink));
+	    productLink.click();
 	}
 
 }
