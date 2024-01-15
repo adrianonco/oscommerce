@@ -12,18 +12,21 @@ public class Catalog {
 	
 	public WebDriver driver;
 	
-	
 	public Catalog (WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-
 
 	public void ClickProduct(String product, WebDriverWait wait) {
 		WebElement productLink = driver.findElement(By.cssSelector("[data-id='29']"));
 	    wait.until(ExpectedConditions.elementToBeClickable(productLink));
 	    productLink.click();
+	}
+	
+	public void addToCart(WebDriverWait wait) {
+	    WebElement addToCartButton = driver.findElement(By.cssSelector("button[type='submit'].btn-2.add-to-cart"));
+	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+	    addToCartButton.click();
 	}
 
 }
