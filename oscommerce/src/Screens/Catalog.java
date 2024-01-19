@@ -34,11 +34,18 @@ public class Catalog {
 	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
 	}
 	
-	public boolean verifyQuantity(WebDriverWait wait, String expectedQuantity) {
-	    WebElement quantityElement = driver.findElement(By.cssSelector("[name='cart_quantity[]']"));
+	public String getQuantity() {
+	    // Assuming there's a way to fetch the current quantity from the UI
+	    WebElement quantityElement = driver.findElement(By.cssSelector(".qty-inp-s"));
+	    return quantityElement.getAttribute("value");
+	}
+	
+	/*public boolean verifyQuantity(WebDriverWait wait, String expectedQuantity) {
+	    WebElement quantityElement = driver.findElement(By.cssSelector(".qty-inp"));
 	    wait.until(ExpectedConditions.visibilityOf(quantityElement));
 	    String actualQuantity = quantityElement.getAttribute("value");
 	    return actualQuantity.equals(expectedQuantity);
 	}
+	*/   
 
 }

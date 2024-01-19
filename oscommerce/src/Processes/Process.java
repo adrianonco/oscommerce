@@ -35,7 +35,7 @@ public class Process {
 	}
 	
 	public boolean verifyQuantity(String expectedQuantity) {
-	    return catalog.verifyQuantity(wait, expectedQuantity);
+	    return catalog.getQuantity().equals(expectedQuantity);
 	}
 
 }
