@@ -35,9 +35,10 @@ public class Catalog {
 	}
 	
 	public boolean verifyQuantity(WebDriverWait wait, String expectedQuantity) {
-	    WebElement quantityElement = driver.findElement(By.cssSelector("name=cart_quantity[]"));
+	    WebElement quantityElement = driver.findElement(By.cssSelector("[name='cart_quantity[]']"));
 	    wait.until(ExpectedConditions.visibilityOf(quantityElement));
-	    return quantityElement.getAttribute("value").equals(expectedQuantity);
+	    String actualQuantity = quantityElement.getAttribute("value");
+	    return actualQuantity.equals(expectedQuantity);
 	}
 
 }
