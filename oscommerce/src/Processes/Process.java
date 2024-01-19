@@ -32,11 +32,10 @@ public class Process {
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
 		catalog.updateQuantity(wait, quantity);
-		this.assertQuantityIsTwo(wait);
 	}
 	
-	public void assertQuantityIsTwo(WebDriverWait wait) throws Exception {
-	    catalog.assertQuantity(wait, "2");
+	public boolean verifyQuantity(String expectedQuantity) {
+	    return catalog.verifyQuantity(wait, expectedQuantity);
 	}
 
 }

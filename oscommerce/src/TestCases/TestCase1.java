@@ -23,6 +23,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import Processes.Process;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class TestCase1{
 	
@@ -111,6 +113,7 @@ class TestCase1{
 	void test2() throws InterruptedException {
 		createFirefoxDriver();
 		Process process = new Process(driverFirefox);
+		assertTrue(process.verifyQuantity("2"));
 		
 	}
 
