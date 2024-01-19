@@ -24,19 +24,31 @@ public class Catalog {
 	}
 	
 	public void addToCart(WebDriverWait wait) {
-	    WebElement addToCartButton = driver.findElement(By.cssSelector("button[type='submit'].btn-2.add-to-cart"));
+	    WebElement addToCartButton = driver.findElement(By.cssSelector(".btn-2.add-to-cart"));
 	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
 	    addToCartButton.click();
 	}
 	
-	public void updateQuantity(WebDriverWait wait, String quantity) {
-	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".bigger"));
-	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
+	public void waitForPopupAndAddItem(WebDriverWait wait) throws InterruptedException {
+	    // Wait for 6 seconds for the popup to appear
+	    Thread.sleep(6000);  // Using Thread.sleep is generally discouraged, but used here for simplicity
+
+	    WebElement popup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("popup-box-wrap")));
+	    WebElement addItemButton = popup.findElement(By.className("bigger"));
+	    addItemButton.click();
 	}
+	
+	/*
+	public void updateQuantity(WebDriverWait wait, String quantity) {
+	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".popup-box-wrap .bigger"));
+	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
+	    quantityUpdateButton.click();
+	}
+	*/
 	
 	public String getQuantity() {
 	    // Assuming there's a way to fetch the current quantity from the UI
-	    WebElement quantityElement = driver.findElement(By.cssSelector(".qty-inp-s"));
+	    WebElement quantityElement = driver.findElement(By.cssSelector(".qty-inp"));
 	    return quantityElement.getAttribute("value");
 	}
 	

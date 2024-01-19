@@ -31,7 +31,7 @@ public class Process {
 		this.enterSite(baseUrl);
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
-		catalog.updateQuantity(wait, quantity);
+		catalog.waitForPopupAndAddItem(wait);
 	}
 	
 	public boolean verifyQuantity(String expectedQuantity) {
