@@ -23,17 +23,20 @@ public class Process {
 		wait = new WebDriverWait(driver, ESPERA);
 	}
 	
+	public void enterSite (String url) {
+		driver.get(url);
+	}
+	
 	public void purchaseProcess(String baseUrl, String product, String quantity) throws InterruptedException {
 		this.enterSite(baseUrl);
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
 		catalog.updateQuantity(wait, quantity);
+		this.assertQuantityIsTwo(wait);
 	}
 	
-	public void enterSite (String url) {
-		driver.get(url);
+	public void assertQuantityIsTwo(WebDriverWait wait) throws Exception {
+	    catalog.assertQuantity(wait, "2");
 	}
-	
-	
 
 }

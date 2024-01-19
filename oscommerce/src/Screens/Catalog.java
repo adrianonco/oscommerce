@@ -33,5 +33,15 @@ public class Catalog {
 	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".bigger"));
 	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
 	}
+	
+	public void assertQuantity(WebDriverWait wait, String expectedQuantity) throws Exception {
+	    WebElement quantityField = driver.findElement(By.cssSelector("your-quantity-field-selector")); // Replace with the actual selector
+	    wait.until(ExpectedConditions.visibilityOf(quantityField));
+	    String actualQuantity = quantityField.getAttribute("value"); // Replace "value" with the appropriate attribute if different
+
+	    if (!actualQuantity.equals(expectedQuantity)) {
+	        throw new Exception("Quantity mismatch: expected " + expectedQuantity + " but found " + actualQuantity);
+	    }
+	}
 
 }
