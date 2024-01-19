@@ -29,10 +29,9 @@ public class Catalog {
 	    addToCartButton.click();
 	}
 	
-	public void addOneMoreItem(WebDriverWait wait) {
-	    WebElement oneMoreItemButton = driver.findElement(By.cssSelector(".popup-box-wrap .bigger"));
-	    wait.until(ExpectedConditions.elementToBeClickable(oneMoreItemButton));
-	    oneMoreItemButton.click();
+	public void updateQuantity(WebDriverWait wait, String quantity) {
+	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".bigger"));
+	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
 	}
 
 }

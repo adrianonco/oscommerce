@@ -27,7 +27,7 @@ public class Process {
 		this.enterSite(baseUrl);
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
-		catalog.addOneMoreItem(wait);
+		catalog.updateQuantity(wait, quantity);
 	}
 	
 	public void enterSite (String url) {
