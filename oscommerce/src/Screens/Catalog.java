@@ -28,5 +28,11 @@ public class Catalog {
 	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
 	    addToCartButton.click();
 	}
+	
+	public void addOneMoreItem(WebDriverWait wait) {
+	    WebElement oneMoreItemButton = driver.findElement(By.cssSelector(".popup-box-wrap .bigger"));
+	    wait.until(ExpectedConditions.elementToBeClickable(oneMoreItemButton));
+	    oneMoreItemButton.click();
+	}
 
 }
