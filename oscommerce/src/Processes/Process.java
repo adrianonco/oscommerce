@@ -32,7 +32,10 @@ public class Process {
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
 		catalog.waitForPopupAndAddItem(wait);
-		catalog.checkout(wait);
+		/*
+		catalog.navigateToAccountPage(wait);
+	    catalog.login("example@hotmail.com", "pass1234", wait);
+	    */
 	}
 	
 	public int getCartQuantity() {
