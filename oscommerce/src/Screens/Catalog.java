@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.JavascriptExecutor;
+
 public class Catalog {
 	
 	public WebDriver driver;
@@ -24,7 +26,12 @@ public class Catalog {
 	}
 	
 	public void addToCart(WebDriverWait wait) {
-	    WebElement addToCartButton = driver.findElement(By.cssSelector(".btn-2.add-to-cart"));
+	    By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
+	    
+	    // Wait for the element to be present in the DOM as it sometimes throws NoSuchElementException
+	    wait.until(ExpectedConditions.presenceOfElementLocated(addToCartSelector));
+
+	    WebElement addToCartButton = driver.findElement(addToCartSelector);
 	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
 	    addToCartButton.click();
 	}
@@ -42,5 +49,10 @@ public class Catalog {
 	    WebElement quantityInput = driver.findElement(By.cssSelector(".qty-inp-s"));
 	    return Integer.parseInt(quantityInput.getAttribute("value"));
 	} 
+	
+	public void checkout(WebDriverWait wait) {
+	    WebElement checkoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".popup-box-wrap .btn-2")));
+	    wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
+	}
 
 }

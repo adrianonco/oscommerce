@@ -32,6 +32,7 @@ public class Process {
 		catalog.ClickProduct(product, wait);
 		catalog.addToCart(wait);
 		catalog.waitForPopupAndAddItem(wait);
+		catalog.checkout(wait);
 	}
 	
 	public int getCartQuantity() {
