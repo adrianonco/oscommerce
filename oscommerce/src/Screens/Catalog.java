@@ -41,32 +41,6 @@ public class Catalog {
 	public int getCartQuantity() {
 	    WebElement quantityInput = driver.findElement(By.cssSelector(".qty-inp-s"));
 	    return Integer.parseInt(quantityInput.getAttribute("value"));
-	}
-	
-	/*
-	public void updateQuantity(WebDriverWait wait, String quantity) {
-	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".popup-box-wrap .bigger"));
-	    wait.until(ExpectedConditions.elementToBeClickable(quantityUpdateButton));
-	    quantityUpdateButton.click();
-	}
-	*/
-	
-	/*
-	public String getQuantity() {
-	    // Assuming there's a way to fetch the current quantity from the UI
-	    WebElement quantityElement = driver.findElement(By.cssSelector(".qty-inp-s"));
-	    return quantityElement.getAttribute("value");
-	}
-	*/
-	
-	/*
-	public boolean verifyQuantity(WebDriverWait wait, String expectedQuantity) {
-	    WebElement quantityElement = driver.findElement(By.className("qty-inp-s"));
-	    wait.until(ExpectedConditions.visibilityOf(quantityElement));
-	    String actualQuantity = quantityElement.getAttribute("value");
-	    return actualQuantity.equals(expectedQuantity);
-	}
-	*/
-	  
+	} 
 
 }

@@ -108,9 +108,6 @@ class TestCase1{
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
 		int quantity = process.getCartQuantity();
 	    assertEquals(2, quantity);
-		/*
-		assertTrue(process.verifyQuantity("2"));
-		*/
 	}
 	
 	@Test
@@ -118,7 +115,6 @@ class TestCase1{
 	void test2() throws InterruptedException {
 		createFirefoxDriver();
 		Process process = new Process(driverFirefox);
-		
 	}
 
 }
