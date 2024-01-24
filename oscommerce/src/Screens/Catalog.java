@@ -38,6 +38,11 @@ public class Catalog {
 	    addItemButton.click();
 	}
 	
+	public int getCartQuantity() {
+	    WebElement quantityInput = driver.findElement(By.cssSelector(".qty-inp-s"));
+	    return Integer.parseInt(quantityInput.getAttribute("value"));
+	}
+	
 	/*
 	public void updateQuantity(WebDriverWait wait, String quantity) {
 	    WebElement quantityUpdateButton = driver.findElement(By.cssSelector(".popup-box-wrap .bigger"));

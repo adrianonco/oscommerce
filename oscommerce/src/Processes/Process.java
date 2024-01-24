@@ -34,6 +34,10 @@ public class Process {
 		catalog.waitForPopupAndAddItem(wait);
 	}
 	
+	public int getCartQuantity() {
+	    return catalog.getCartQuantity();
+	}
+	
 	/*
 	public boolean verifyQuantity(String expectedQuantity) {
 	    return catalog.getQuantity().equals(expectedQuantity);

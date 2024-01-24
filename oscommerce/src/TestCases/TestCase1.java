@@ -23,7 +23,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import Processes.Process;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class TestCase1{
@@ -106,6 +106,11 @@ class TestCase1{
 		createChromeDriver();
 		Process process = new Process(driverChrome);
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
+		int quantity = process.getCartQuantity();
+	    assertEquals(2, quantity);
+		/*
+		assertTrue(process.verifyQuantity("2"));
+		*/
 	}
 	
 	@Test
@@ -113,9 +118,7 @@ class TestCase1{
 	void test2() throws InterruptedException {
 		createFirefoxDriver();
 		Process process = new Process(driverFirefox);
-		/*
-		assertTrue(process.verifyQuantity("2"));
-		*/
+		
 	}
 
 }
