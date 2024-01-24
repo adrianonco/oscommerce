@@ -53,18 +53,67 @@ public class Catalog {
 	// Step 6
 	
 	public void checkout(WebDriverWait wait) {
+	    WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".popup-box-wrap .btn-2")));
+	    checkoutButton.click();
+
+	    // Wait for a specific element on the new page to appear
+	    By uniqueElementOnNextPage = By.id("uniqueElementId"); // Replace with an actual unique identifier
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(uniqueElementOnNextPage));
+	}
+	
+	/*
+	public void checkout(WebDriverWait wait) {
 	    // Assuming the 'btn-2' button is uniquely identifiable within the popup
 	    WebElement checkoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".popup-box-wrap .btn-2")));
 	    wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
 	    checkoutButton.click();
 	}
+	*/
 	
-	/*
 	// Step 7
 	
 	public void navigateToAccountPage(WebDriverWait wait) {
-	    WebElement myAccountButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".my-acc-link")));
+	    // Wait for the "My account" button to be clickable and click it
+	    WebElement myAccountButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-210238")));
 	    myAccountButton.click();
+
+	    // Wait for a specific element on the login page to ensure it's loaded
+	    // Example: By.id("login-email_address")
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
+	}
+
+	public void login(String email, String password, WebDriverWait wait) {
+	    WebElement emailInput = driver.findElement(By.id("login-email_address"));
+	    WebElement passwordInput = driver.findElement(By.id("login-password"));
+	    WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
+
+	    emailInput.sendKeys(email);
+	    passwordInput.sendKeys(password);
+	    loginButton.click();
+	}
+	
+	/* 
+	// Step 7
+	
+	public void navigateToAccountPage(WebDriverWait wait) {
+	    // Wait for the page to be fully loaded
+	    wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+
+	    // Retry mechanism for clicking the button
+	    final By myAccountSelector = By.id("box-210238");
+	    final int MAX_ATTEMPTS = 3;
+	    for (int attempts = 0; attempts < MAX_ATTEMPTS; attempts++) {
+	        try {
+	            WebElement myAccountButton = wait.until(ExpectedConditions.elementToBeClickable(myAccountSelector));
+	            myAccountButton.click();
+	            break; // Break the loop if click is successful
+	        } catch (ElementClickInterceptedException e) {
+	            if (attempts == MAX_ATTEMPTS - 1) {
+	                throw e; // Rethrow the exception if max attempts are reached
+	            }
+	            // Optionally, add a small delay here if needed
+	        }
+	    }
 	}
 
 	public void login(String email, String password, WebDriverWait wait) {
