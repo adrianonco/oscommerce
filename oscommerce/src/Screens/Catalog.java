@@ -64,9 +64,9 @@ public class Catalog {
         addProductElement.click();
     }
     
- // Step 5: Method to get the quantity from the input form
+ // Step 5: Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
-        // Locate the input element by its CSS class
+        // Locate the input element
         By quantityInputSelector = By.cssSelector("input.qty-inp-s");
         WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(quantityInputSelector));
 

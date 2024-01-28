@@ -106,8 +106,8 @@ class TestCase1{
 		createChromeDriver();
 		Process process = new Process(driverChrome);
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
-		int quantity = process.fetchQuantityFromCart();
-	    assertEquals(2, quantity, "The quantity in the cart is not as expected");
+		int quantity = process.fetchQuantityFromCart(); // Step 5: call the method in Process
+	    assertEquals(2, quantity); // Step 5: perform the assert
 	    
 	}
 		/*
