@@ -19,18 +19,18 @@ public class Process {
 		wait = new WebDriverWait(driver, ESPERA);
 	}
 	
-	public void purchaseProcess(String baseUrl, String product, String quantity) throws InterruptedException {
-		this.enterSite(baseUrl);
-
-	}
-	
-	public void clickOnProduct() {
-        catalog.clickProduct(wait); // Delegating the click action to the Catalog class
-    }
-	
 	public void enterSite(String url) {
 		driver.get(url);
 	}
+	
+	public void purchaseProcess(String baseUrl, String product, String quantity) throws InterruptedException {
+		this.enterSite(baseUrl); // Step 1
+		catalog.clickProduct(wait); // Step 2
+		catalog.clickAddToCartButton(wait); // Step 3
+	 // Step 4
+
+	}
+
 	
 	/*
 	

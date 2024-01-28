@@ -24,7 +24,7 @@ public class Catalog {
         driver.get(url); // WebDriver navigates to the specified URL
     }
     
-    // Step 2: Method to click on a product with a specific CSS selector
+    // Step 2: Method to click on a specific product
     public void clickProduct(WebDriverWait wait) {
         // Define the CSS selector for the product
         By productSelector = By.cssSelector("[data-id='29']");
@@ -35,6 +35,20 @@ public class Catalog {
         // Click on the product
         productElement.click();
     }
+    
+    // Step 3: Method to wait for and click the "Add to Cart" button
+    public void clickAddToCartButton(WebDriverWait wait) {
+        // Define the selector for the submit button
+    	By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
+
+        // Wait for the submit button to be clickable
+    	WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartSelector));
+
+        // Click the submit button
+        addToCartButton.click();
+        
+    }
+    
 	
 	/*
 	
