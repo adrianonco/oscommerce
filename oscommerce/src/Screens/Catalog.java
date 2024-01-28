@@ -23,6 +23,25 @@ public class Catalog {
     public void enterSite(String url, WebDriverWait wait) {
         driver.get(url); // WebDriver navigates to the specified URL
     }
+    
+    // Step 2: Method to click on a product with a specific CSS selector
+    public void clickProduct(WebDriverWait wait) {
+        // Define the CSS selector for the product
+        By productSelector = By.cssSelector("[data-id='29']");
+
+        // Wait for the product to be clickable
+        WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(productSelector));
+
+        // Click on the product
+        productElement.click();
+    }
+	
+	/*
+	
+	// Step 1: Method to navigate to a URL
+    public void enterSite(String url, WebDriverWait wait) {
+        driver.get(url); // WebDriver navigates to the specified URL
+    }
 
 	public void ClickProduct(String product, WebDriverWait wait) {
 		WebElement productLink = driver.findElement(By.cssSelector("[data-id='29']"));
@@ -76,6 +95,8 @@ public class Catalog {
 	*/
 	
 	// Step 7
+	
+	/* This works
 	
 	public void navigateToAccountPage(WebDriverWait wait) {
 	    // Wait for the "My account" button to be clickable and click it
@@ -131,5 +152,6 @@ public class Catalog {
 	    loginButton.click();
 	}
 	*/
+	
 
 }
