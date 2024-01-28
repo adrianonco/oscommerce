@@ -18,6 +18,11 @@ public class Catalog {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	// Step 1: Method to navigate to a URL
+    public void enterSite(String url, WebDriverWait wait) {
+        driver.get(url); // WebDriver navigates to the specified URL
+    }
 
 	public void ClickProduct(String product, WebDriverWait wait) {
 		WebElement productLink = driver.findElement(By.cssSelector("[data-id='29']"));

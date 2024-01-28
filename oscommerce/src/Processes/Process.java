@@ -9,20 +9,17 @@ import Screens.Catalog;
 
 public class Process {
 	private static final Duration ESPERA = Duration.ofSeconds(50);
-	
 	private  WebDriverWait wait;
 	private WebDriver driver;
-	
 	public Catalog catalog;
-
 	
 	public Process(WebDriver driver) {
 		this.driver=driver;
-		
 		catalog = new Catalog(driver);
 		wait = new WebDriverWait(driver, ESPERA);
 	}
 	
+	// Step 1: Navigate to a specific URL
 	public void enterSite (String url) {
 		driver.get(url);
 	}
