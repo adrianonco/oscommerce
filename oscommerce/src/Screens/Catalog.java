@@ -38,13 +38,13 @@ public class Catalog {
     
     // Step 3: Method to wait for and click the "Add to Cart" button
     public void clickAddToCartButton(WebDriverWait wait) {
-        // Define the selector for the submit button
+        // Define the selector for the button
     	By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
 
-        // Wait for the submit button to be clickable
+        // Wait for the button to be clickable
     	WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartSelector));
 
-        // Click the submit button
+        // Click the button
         addToCartButton.click();
         
     }
