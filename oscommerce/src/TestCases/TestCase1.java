@@ -108,6 +108,7 @@ class TestCase1{
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
 		int quantity = process.fetchQuantityFromCart(); // Step 5: call the method in Process
 	    assertEquals(2, quantity); // Step 5: perform the assert
+	    process.signup("onco85@hotmail.com", "pass1234"); // Step 7: perform the sign-up
 	    
 	}
 		/*

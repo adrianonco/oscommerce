@@ -19,12 +19,16 @@ public class Catalog {
 		PageFactory.initElements(driver, this);
 	}
 	
-	// Step 1: Method to navigate to a URL
+	// Step 1
+	
+	// Method to navigate to a URL
     public void enterSite(String url, WebDriverWait wait) {
         driver.get(url); // WebDriver navigates to the specified URL
     }
     
-    // Step 2: Method to click on a specific product
+    // Step 2
+    
+    // Method to click on a specific product
     public void clickProduct(WebDriverWait wait) {
         // Define the CSS selector for the product
         By productSelector = By.linkText("Royal London 41003-03"); 
@@ -36,7 +40,9 @@ public class Catalog {
         productElement.click();
     }
     
-    // Step 3: Method to wait for and click the "Add to Cart" button
+    // Step 3
+    
+    // Method to wait for and click the "Add to Cart" button
     public void clickAddToCartButton(WebDriverWait wait) {
         // Define the selector for the button
     	By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
@@ -49,7 +55,9 @@ public class Catalog {
         
     }
     
-    // Step 4: Method to handle popup and click the element to add another product
+    // Step 4
+    
+    // Method to handle popup and click the element to add another product
     public void addProductInPopup(WebDriverWait wait) throws InterruptedException {
         // Wait for a few seconds before checking for the popup as it has delay
         Thread.sleep(4000);
@@ -64,7 +72,9 @@ public class Catalog {
         addProductElement.click();
     }
     
- // Step 5: Method to assert the quantity from the input form
+    // Step 5
+    
+    // Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
         // Locate the input element
         By quantityInputSelector = By.cssSelector("input.qty-inp-s");
@@ -75,7 +85,9 @@ public class Catalog {
         return Integer.parseInt(quantityValue);
     }
     
-    // Step 6: Method to click the checkout button
+    // Step 6
+    
+    // Method to click the checkout button
     public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
     	// Wait for 2 seconds before checking the quantity has been updated
         Thread.sleep(2000);
@@ -87,6 +99,36 @@ public class Catalog {
         // Click the checkout button
         checkoutButton.click();
     }
+    
+    // Step 7
+    
+    // Method to click the "My Account" link
+    public void clickMyAccountLink(WebDriverWait wait) {
+    	
+    	// Locate the link
+        WebElement myAccountLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.my-acc-link")));
+        
+        // Click the link
+        myAccountLink.click();
+
+    }
+
+    // Method to enter login credentials and click the login button
+    public void enterLoginCredentialsAndLogin(String email, String password, WebDriverWait wait) {
+
+        // Locate the email input and enter email
+        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
+        emailInput.sendKeys(email);
+
+        // Locate the password input and enter passwordd
+        WebElement passwordInput = driver.findElement(By.id("login-password"));
+        passwordInput.sendKeys(password);
+
+        // Locate and click the login button
+        WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
+        loginButton.click();
+    }
+
 
     
 	

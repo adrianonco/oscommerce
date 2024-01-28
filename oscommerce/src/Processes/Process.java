@@ -31,9 +31,19 @@ public class Process {
 		catalog.clickCheckoutButton(wait); // Step 6
 	}
 	
-	// Step 5: Method to get the quantity from the Catalog class and return it
+	// Step 5
+	
+	// Method to get the quantity from the Catalog class and return it
 	public int fetchQuantityFromCart() {
 	    return catalog.getQuantityFromInput(wait); // Get the quantity from the input form
+	}
+	
+	// Step 7
+	
+	// Method to perform the signup process
+	public void signup(String email, String password) throws InterruptedException {
+	    catalog.clickMyAccountLink(wait); // Click on the "My Account" link
+	    catalog.enterLoginCredentialsAndLogin(email, password, wait); // Enter login credentials and login
 	}
 
 	
