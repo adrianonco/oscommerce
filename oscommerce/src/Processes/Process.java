@@ -28,7 +28,11 @@ public class Process {
 		catalog.clickProduct(wait); // Step 2
 		catalog.clickAddToCartButton(wait); // Step 3
 		catalog.addProductInPopup(wait); // Step 4
-
+	}
+	
+	// Step 5: Method to get the quantity from the Catalog class and return it
+	public int fetchQuantityFromCart() {
+	    return catalog.getQuantityFromInput(wait); // Get the quantity from the input form
 	}
 
 	

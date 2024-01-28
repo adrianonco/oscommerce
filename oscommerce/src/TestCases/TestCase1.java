@@ -106,12 +106,14 @@ class TestCase1{
 		createChromeDriver();
 		Process process = new Process(driverChrome);
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
-		
+		int quantity = process.fetchQuantityFromCart();
+	    assertEquals(2, quantity, "The quantity in the cart is not as expected");
+	    
+	}
 		/*
 		int quantity = process.getCartQuantity();
 	    assertEquals(2, quantity);
 	    */
-	}
 	
 	@Test
 	//A second test of the purchase process by adding and paying the product "Citizen Eco-Drive Silver Tone Men" with quantity "3"

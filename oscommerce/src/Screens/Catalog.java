@@ -49,9 +49,9 @@ public class Catalog {
         
     }
     
-    // Step 4: Method to handle popup and click the specified element
+    // Step 4: Method to handle popup and click the element to add another product
     public void addProductInPopup(WebDriverWait wait) throws InterruptedException {
-        // Wait for a few seconds before checking for the popup as it is very slow
+        // Wait for a few seconds before checking for the popup as it has delay
         Thread.sleep(4000);
 
         // Wait for the popup to be visible
@@ -59,9 +59,20 @@ public class Catalog {
         wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector));
 
         // Find and click the element to add another product
-        By biggerSpanSelector = By.cssSelector("div.qty span.bigger");
-        WebElement biggerSpanElement = driver.findElement(biggerSpanSelector);
-        biggerSpanElement.click();
+        By addProductSelector = By.cssSelector("div.qty span.bigger");
+        WebElement addProductElement = driver.findElement(addProductSelector);
+        addProductElement.click();
+    }
+    
+ // Step 5: Method to get the quantity from the input form
+    public int getQuantityFromInput(WebDriverWait wait) {
+        // Locate the input element by its CSS class
+        By quantityInputSelector = By.cssSelector("input.qty-inp-s");
+        WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(quantityInputSelector));
+
+        // Retrieve the value attribute and parse it to an integer
+        String quantityValue = quantityInputElement.getAttribute("value");
+        return Integer.parseInt(quantityValue);
     }
 
     
