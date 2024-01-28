@@ -74,6 +74,19 @@ public class Catalog {
         String quantityValue = quantityInputElement.getAttribute("value");
         return Integer.parseInt(quantityValue);
     }
+    
+    // Step 6: Method to click the checkout button
+    public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
+    	// Wait for 2 seconds before checking the quantity has been updated
+        Thread.sleep(2000);
+        
+        // Locate the checkout button
+        By checkoutButtonSelector = By.linkText("GO TO CART");
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(checkoutButtonSelector));
+
+        // Click the checkout button
+        checkoutButton.click();
+    }
 
     
 	
