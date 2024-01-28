@@ -27,7 +27,7 @@ public class Catalog {
     // Step 2: Method to click on a specific product
     public void clickProduct(WebDriverWait wait) {
         // Define the CSS selector for the product
-        By productSelector = By.cssSelector("[data-id='29']");
+        By productSelector = By.linkText("Royal London 41003-03"); 
 
         // Wait for the product to be clickable
         WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(productSelector));
@@ -48,6 +48,22 @@ public class Catalog {
         addToCartButton.click();
         
     }
+    
+    // Step 4: Method to handle popup and click the specified element
+    public void addProductInPopup(WebDriverWait wait) throws InterruptedException {
+        // Wait for a few seconds before checking for the popup as it is very slow
+        Thread.sleep(4000);
+
+        // Wait for the popup to be visible
+        By popupSelector = By.id("cart-form");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector));
+
+        // Find and click the element to add another product
+        By biggerSpanSelector = By.cssSelector("div.qty span.bigger");
+        WebElement biggerSpanElement = driver.findElement(biggerSpanSelector);
+        biggerSpanElement.click();
+    }
+
     
 	
 	/*

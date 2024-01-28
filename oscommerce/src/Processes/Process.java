@@ -27,7 +27,7 @@ public class Process {
 		this.enterSite(baseUrl); // Step 1
 		catalog.clickProduct(wait); // Step 2
 		catalog.clickAddToCartButton(wait); // Step 3
-	 // Step 4
+		catalog.addProductInPopup(wait); // Step 4
 
 	}
 
