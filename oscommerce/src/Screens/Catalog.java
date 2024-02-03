@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 
 public class Catalog {
 	
@@ -127,6 +128,23 @@ public class Catalog {
         // Locate and click the login button
         WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
         loginButton.click();
+    }
+    
+ // Method to hover "Shopping Cart" and click the "Checkout" button after login
+    public void hoverAndClickCart(WebDriverWait wait) {
+        
+    	// Create an instance of Actions class to perform complex mouse actions
+        Actions actions = new Actions(driver);
+
+        // Hover over the "Shopping Cart" button
+        WebElement cartBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-box")));
+        actions.moveToElement(cartBox).build().perform();
+
+        // Wait for the "Checkout" button to be clickable after hover action
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.btn")));
+        
+        // Click the button
+        checkoutButton.click();
     }
 
 
