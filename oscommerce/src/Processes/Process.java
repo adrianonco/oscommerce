@@ -45,6 +45,7 @@ public class Process {
 	    catalog.clickMyAccountLink(wait); // Click on the "My Account" link
 	    catalog.enterLoginCredentialsAndLogin(email, password, wait); // Enter login credentials and login
 	    catalog.hoverAndClickCart(wait); // Call the new hover and click method after login
+	    catalog.selectPaymentMethod(wait); // Call the method to click on the radio button
 	}
 
 	

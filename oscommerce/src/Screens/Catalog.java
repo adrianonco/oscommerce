@@ -141,10 +141,24 @@ public class Catalog {
         actions.moveToElement(cartBox).build().perform();
 
         // Wait for the "Checkout" button to be clickable after hover action
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.btn")));
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-box .right-buttons a.btn")));
         
         // Click the button
         checkoutButton.click();
+    }
+    
+    
+    // Step 8
+    
+    // Method to click the radio button for payment method
+    
+    public void selectPaymentMethod(WebDriverWait wait) {
+        
+    	// Locate the radio button "Cash on delivery"
+        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='radio'][value='cod']")));
+        
+        // Click the button
+        radioButton.click();
     }
 
 
