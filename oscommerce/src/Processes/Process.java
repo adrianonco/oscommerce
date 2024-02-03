@@ -40,12 +40,21 @@ public class Process {
 	
 	// Step 7
 	
-	// Method to perform the signup process
+	// Method to perform the sign-up process and come back to checkout
 	public void signup(String email, String password) throws InterruptedException {
 	    catalog.clickMyAccountLink(wait); // Click on the "My Account" link
 	    catalog.enterLoginCredentialsAndLogin(email, password, wait); // Enter login credentials and login
 	    catalog.hoverAndClickCart(wait); // Call the new hover and click method after login
 	    catalog.selectPaymentMethod(wait); // Call the method to click on the radio button
+        catalog.fulfillPaymentForm(wait); // Fulfilling the payment form
+    }
+    
+    // Step 10
+    
+    // Method to check the order confirmation message
+	public boolean checkOrderConfirmation() {
+	    // Call the method from 'Catalog' that uses 'driver' internally
+	    return catalog.isOrderConfirmationDisplayed();
 	}
 
 	

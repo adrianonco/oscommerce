@@ -24,6 +24,7 @@ import Processes.Process;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TestCase1{
@@ -109,7 +110,11 @@ class TestCase1{
 		int quantity = process.fetchQuantityFromCart(); // Step 5: call the method in Process
 	    assertEquals(2, quantity); // Step 5: perform the assert
 	    process.signup("onco85@hotmail.com", "pass1234"); // Step 7: perform the sign-up
-	    
+	 // Now, check for order confirmation
+	    boolean confirmationDisplayed = process.checkOrderConfirmation();
+
+	    // Assert
+	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
 	}
 		/*
 		int quantity = process.getCartQuantity();

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class Catalog {
 	
@@ -90,6 +91,7 @@ public class Catalog {
     
     // Method to click the checkout button
     public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
+    	
     	// Wait for 2 seconds before checking the quantity has been updated
         Thread.sleep(2000);
         
@@ -128,6 +130,7 @@ public class Catalog {
         // Locate and click the login button
         WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
         loginButton.click();
+        
     }
     
  // Method to hover "Shopping Cart" and click the "Checkout" button after login
@@ -145,6 +148,7 @@ public class Catalog {
         
         // Click the button
         checkoutButton.click();
+        
     }
     
     
@@ -154,11 +158,43 @@ public class Catalog {
     
     public void selectPaymentMethod(WebDriverWait wait) {
         
-    	// Locate the radio button "Cash on delivery"
-        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='radio'][value='cod']")));
-        
-        // Click the button
+    	// Use a more specific selector to locate the radio button for "Cash on Delivery"
+        By radioButtonSelector = By.cssSelector("input[type='radio'][name='payment'][value='cod']");
+
+        // Wait for the radio button to be clickable
+        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(radioButtonSelector));
+
+        // Click the radio button
         radioButton.click();
+    }
+    
+    
+    // Step 9
+    
+    // Method to fulfill the payment form, confirm and pay
+    
+    public void fulfillPaymentForm(WebDriverWait wait) throws InterruptedException {
+        
+    	// Wait for 2 seconds before checking the quantity has been updated
+        Thread.sleep(2000);
+        
+        // Other steps to fill the form can be included here
+
+        // Use WebDriverWait to wait for the "Confirm and pay" button to be clickable
+        WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
+
+        // Click the “Confirm and pay” button after ensuring it's clickable
+        confirmAndPayButton.click();
+    }
+    
+    
+    // Step 10
+    
+    // Method to verify the order confirmation message
+    public boolean isOrderConfirmationDisplayed() {
+        // Directly use 'driver', which is already a member of 'Catalog'
+        String pageSource = driver.getPageSource();
+        return pageSource.contains("We've received your order");
     }
 
 
