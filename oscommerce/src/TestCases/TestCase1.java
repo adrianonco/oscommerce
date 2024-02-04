@@ -102,24 +102,32 @@ class TestCase1{
 	}
 
 	@Test
+	
 	//A first test of the purchase process by adding and paying the product "Royal London 41003-03" with quantity "2" (executed in Chrome)
 	void test1() throws InterruptedException {
+		
+		// Initialize a Chrome WebDriver instance for the test
 		createChromeDriver();
+		
+		// Create a new 'Process' object, passing the Chrome WebDriver to handle the test's process flow.
 		Process process = new Process(driverChrome);
+		
+		// Step 1, 2 & 4: Execute the purchase process for the specific product on the indicated website and add 2 items to the cart 
 		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
-		int quantity = process.fetchQuantityFromCart(); // Step 5: call the method in Process
-	    assertEquals(2, quantity); // Step 5: perform the assert
-	    process.signup("onco85@hotmail.com", "pass1234"); // Step 7: perform the sign-up
-	 // Now, check for order confirmation
-	    boolean confirmationDisplayed = process.checkOrderConfirmation();
-
-	    // Assert
-	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
+		
+		// Step 5: Fetch the quantity of the item from the cart and assert if it matches the expected quantity (2).
+		int quantity = process.fetchQuantityFromCart(); // Call the method in Process
+	    assertEquals(2, quantity); // Perform the assert
+	    
+	    // Step 7: Perform the log-in with given credentials
+	    process.login("onco85@hotmail.com", "pass1234");
+	 
+	    // Step 10:Check that the confirmation message is displayed
+	    boolean confirmationDisplayed = process.checkOrderConfirmation(); // Check if the order confirmation message "We've received your order" is displayed on the page
+	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed."); // Assert that the message is displayed and throw a fail message if it is not
+	
 	}
-		/*
-		int quantity = process.getCartQuantity();
-	    assertEquals(2, quantity);
-	    */
+	
 	
 	@Test
 	//A second test of the purchase process by adding and paying the product "Citizen Eco-Drive Silver Tone Men" with quantity "3"

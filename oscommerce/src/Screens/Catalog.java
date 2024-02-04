@@ -25,20 +25,23 @@ public class Catalog {
 	
 	// Method to navigate to a URL
     public void enterSite(String url, WebDriverWait wait) {
-        driver.get(url); // WebDriver navigates to the specified URL
+    	
+    	// WebDriver navigates to the specified URL
+        driver.get(url); 
     }
     
     // Step 2
     
     // Method to click on a specific product
     public void clickProduct(WebDriverWait wait) {
-        // Define the CSS selector for the product
+    	
+        // Define the CSS selector for the product link
         By productSelector = By.linkText("Royal London 41003-03"); 
 
-        // Wait for the product to be clickable
+        // Wait for the product link to be clickable
         WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(productSelector));
 
-        // Click on the product
+        // Click it
         productElement.click();
     }
     
@@ -46,29 +49,30 @@ public class Catalog {
     
     // Method to wait for and click the "Add to Cart" button
     public void clickAddToCartButton(WebDriverWait wait) {
-        // Define the selector for the button
+    	
+        // Define the CSS selector for the button
     	By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
 
         // Wait for the button to be clickable
     	WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartSelector));
 
-        // Click the button
+        // Click it
         addToCartButton.click();
-        
     }
     
     // Step 4
     
     // Method to handle popup and click the element to add another product
     public void addProductInPopup(WebDriverWait wait) throws InterruptedException {
+    	
         // Wait for a few seconds before checking for the popup as it has delay
         Thread.sleep(4000);
 
-        // Wait for the popup to be visible
+        // Define the CSS selector of the popup and wait for it to be visible
         By popupSelector = By.id("cart-form");
         wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector));
 
-        // Find and click the element to add another product
+        // Define the CSS selector of the element, locate and click it
         By addProductSelector = By.cssSelector("div.qty span.bigger");
         WebElement addProductElement = driver.findElement(addProductSelector);
         addProductElement.click();
@@ -78,7 +82,8 @@ public class Catalog {
     
     // Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
-        // Locate the input element
+    	
+        // Define the CSS selector of the input form and wait for it to be visible
         By quantityInputSelector = By.cssSelector("input.qty-inp-s");
         WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(quantityInputSelector));
 
@@ -95,11 +100,11 @@ public class Catalog {
     	// Wait for 2 seconds before checking the quantity has been updated
         Thread.sleep(2000);
         
-        // Locate the checkout button
+        // Define the CSS selector of the checkout button and wait for it to be clickable
         By checkoutButtonSelector = By.linkText("GO TO CART");
         WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(checkoutButtonSelector));
 
-        // Click the checkout button
+        // Click it
         checkoutButton.click();
     }
     
@@ -108,22 +113,22 @@ public class Catalog {
     // Method to click the "My Account" link
     public void clickMyAccountLink(WebDriverWait wait) {
     	
-    	// Locate the link
+    	// Define the CSS selector of the link and wait for it to be clickable
         WebElement myAccountLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.my-acc-link")));
         
-        // Click the link
+        // Click it
         myAccountLink.click();
 
     }
 
-    // Method to enter login credentials and click the login button
+    // Method to enter the login credentials and click the login button
     public void enterLoginCredentialsAndLogin(String email, String password, WebDriverWait wait) {
 
-        // Locate the email input and enter email
+        // Locate the email input, wait for it to be visible and enter email
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
         emailInput.sendKeys(email);
 
-        // Locate the password input and enter passwordd
+        // Locate the password input and enter password
         WebElement passwordInput = driver.findElement(By.id("login-password"));
         passwordInput.sendKeys(password);
 

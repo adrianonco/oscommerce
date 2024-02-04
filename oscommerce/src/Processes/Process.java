@@ -41,7 +41,7 @@ public class Process {
 	// Step 7
 	
 	// Method to perform the sign-up process and come back to checkout
-	public void signup(String email, String password) throws InterruptedException {
+	public void login(String email, String password) throws InterruptedException {
 	    catalog.clickMyAccountLink(wait); // Click on the "My Account" link
 	    catalog.enterLoginCredentialsAndLogin(email, password, wait); // Enter login credentials and login
 	    catalog.hoverAndClickCart(wait); // Call the new hover and click method after login
