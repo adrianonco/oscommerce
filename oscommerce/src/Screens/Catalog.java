@@ -34,12 +34,9 @@ public class Catalog {
     
     // Method to click on a specific product with a specific name
     public void clickProduct(WebDriverWait wait, String productName) {
-    	
-        // Define the CSS selector for the product link dynamically
-        By productSelector = By.linkText(productName); 
 
-        // Wait for the product link to be clickable
-        WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(productSelector));
+        // Define dynamically the element for the product link and wait for the product link to be clickable
+        WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(productName)));
 
         // Click it
         productElement.click();
@@ -49,12 +46,9 @@ public class Catalog {
     
     // Method to wait for and click the "Add to Cart" button
     public void clickAddToCartButton(WebDriverWait wait) {
-    	
-        // Define the CSS selector for the button
-    	By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
 
-        // Wait for the button to be clickable
-    	WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartSelector));
+        // Locate the button and wait for it to be clickable
+    	WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-2.add-to-cart")));
 
         // Click it
         addToCartButton.click();
@@ -68,21 +62,20 @@ public class Catalog {
         // Wait for a few seconds before checking for the popup as it has delay
         Thread.sleep(4000);
 
-        // Define the CSS selector of the popup and wait for it to be visible
-        By popupSelector = By.id("cart-form");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector));
+        // Locate the popup and wait for it to be visible
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-form")));
 
-        // Define the CSS selector of the element to increment the product quantity
-        By addProductSelector = By.cssSelector("div.qty span.bigger");
         
         // Click the "+" button as many times as needed assuming the initial action (add to cart) adds the first item
         for (int i = 1; i < quantity; i++) {
         	
-        	//  Locate the element and click it
-            WebElement addProductElement = driver.findElement(addProductSelector);
+        	// Locate the element to increment the product quantity
+            WebElement addProductElement = driver.findElement(By.cssSelector("div.qty span.bigger"));
+            
+            // Click it
             addProductElement.click();
             
-            // Wait to ensure the each click is registered
+            // Wait to ensure each click is registered
             Thread.sleep(1000); 
         }
     }
@@ -92,12 +85,13 @@ public class Catalog {
     // Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
     	
-        // Define the CSS selector of the input form and wait for it to be visible
-        By quantityInputSelector = By.cssSelector("input.qty-inp-s");
-        WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(quantityInputSelector));
+        // Locate the input form and wait for it to be visible
+        WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.qty-inp-s")));
 
-        // Retrieve the value attribute and parse it to an integer
+        // Retrieve the value attribute from the input form element as a string as retrieving an integer is not possible
         String quantityValue = quantityInputElement.getAttribute("value");
+        
+        // Convert the string value to an integer in order to be asserted in Test class
         return Integer.parseInt(quantityValue);
     }
     
@@ -106,12 +100,11 @@ public class Catalog {
     // Method to click the checkout button
     public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
     	
-    	// Wait for 2 seconds before checking the quantity has been updated
+    	// Wait for 2 seconds as the process has some delay
         Thread.sleep(2000);
         
-        // Define the CSS selector of the checkout button and wait for it to be clickable
-        By checkoutButtonSelector = By.linkText("GO TO CART");
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(checkoutButtonSelector));
+        // Locate the checkout button and wait for it to be clickable
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("GO TO CART")));
 
         // Click it
         checkoutButton.click();
@@ -122,7 +115,7 @@ public class Catalog {
     // Method to click the "My Account" link
     public void clickMyAccountLink(WebDriverWait wait) {
     	
-    	// Define the CSS selector of the link and wait for it to be clickable
+    	// Locate the link and wait for it to be clickable
         WebElement myAccountLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.my-acc-link")));
         
         // Click it
@@ -132,16 +125,22 @@ public class Catalog {
     // Method to enter the login credentials and click the login button
     public void enterLoginCredentialsAndLogin(String email, String password, WebDriverWait wait) {
 
-        // Locate the email input, wait for it to be visible and enter email
+        // Locate the email input and wait for it to be visible
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
+        
+        // Enter email
         emailInput.sendKeys(email);
 
-        // Locate the password input and enter password
+        // Locate the password input
         WebElement passwordInput = driver.findElement(By.id("login-password"));
+        
+        // Enter password
         passwordInput.sendKeys(password);
 
-        // Locate and click the login button
+        // Locate the login button
         WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
+        
+        // Click it
         loginButton.click();  
     }
     
@@ -151,11 +150,13 @@ public class Catalog {
     	// Create an instance of Actions class to perform mouse actions
         Actions actions = new Actions(driver);
 
-        // Locate, wait for and hover over the "Shopping Cart" button
+        // Locate the cart box and wait for it to be visible
         WebElement cartBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-box")));
+        
+        // Hover over it
         actions.moveToElement(cartBox).build().perform();
 
-        // Wait for the "Checkout" button to be clickable
+        // Locate the "Checkout" button and wait for it to be clickable
         WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-box .right-buttons a.btn")));
         
         // Click it
@@ -166,17 +167,13 @@ public class Catalog {
     
     // Method to click the radio button for payment method
     public void selectPaymentMethod(WebDriverWait wait) {
-        
-    	// Use a more specific selector to locate the radio button for "Cash on Delivery"
-        By radioButtonSelector = By.cssSelector("input[type='radio'][name='payment'][value='cod']");
 
-        // Wait for the radio button to be clickable
-        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(radioButtonSelector));
+        // Locate the radio button for "Cash on Delivery" and wait for the radio button to be clickable
+        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='radio'][name='payment'][value='cod']")));
 
         // Click it
         radioButton.click();
     }
-    
     
     // Step 9
     
@@ -188,7 +185,7 @@ public class Catalog {
         
         // Other steps to fill the form can be included here if they were not fulfilled in the sign-up
 
-        // Locate and wait for the "Confirm and pay" button to be clickable
+        // Locate the "Confirm and pay" button and wait for it to be clickable
         WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
 
         // Click it
