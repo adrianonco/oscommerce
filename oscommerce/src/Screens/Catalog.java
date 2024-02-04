@@ -35,7 +35,7 @@ public class Catalog {
     // Method to click on a specific product with a specific name
     public void clickProduct(WebDriverWait wait, String productName) {
     	
-        // Define the CSS selector for the product link
+        // Define the CSS selector for the product link dynamically
         By productSelector = By.linkText(productName); 
 
         // Wait for the product link to be clickable
@@ -62,7 +62,7 @@ public class Catalog {
     
     // Step 4
     
-    // Method to handle popup and click the element to add another product
+    // Method to handle popup and click the element to add specified quantity of the product
     public void addProductInPopup(WebDriverWait wait, int quantity) throws InterruptedException {
     	
         // Wait for a few seconds before checking for the popup as it has delay
@@ -72,17 +72,18 @@ public class Catalog {
         By popupSelector = By.id("cart-form");
         wait.until(ExpectedConditions.visibilityOfElementLocated(popupSelector));
 
-        // Define the CSS selector of the element, locate and click it
+        // Define the CSS selector of the element to increment the product quantity
         By addProductSelector = By.cssSelector("div.qty span.bigger");
         
-        // Click the "add more" button as many times as needed to match the desired quantity
-        // Assuming the initial action (add to cart) adds the first item,
-        // so we start the loop from 1 rather than 0.
+        // Click the "+" button as many times as needed assuming the initial action (add to cart) adds the first item
         for (int i = 1; i < quantity; i++) {
+        	
+        	//  Locate the element and click it
             WebElement addProductElement = driver.findElement(addProductSelector);
             addProductElement.click();
-            // Optionally, add a short wait here if needed to ensure the action is registered
-            Thread.sleep(1000); // Example: wait 1 second between clicks
+            
+            // Wait to ensure the each click is registered
+            Thread.sleep(1000); 
         }
     }
     

@@ -39,13 +39,13 @@ public class Process {
 		// Step 1: Navigate to the base URL
 		this.enterSite(baseUrl); 
 		
-		// Step 2: Click on the specified product
+		// Step 2: Click on the product specified dynamically
 		catalog.clickProduct(wait, product); 
 		
 		// Step 3: Click the "Add to Cart" button
 		catalog.clickAddToCartButton(wait); 
 		
-		// Step 4: Handle additional actions in the popup
+		// Step 4: Add quantity of product dynamically
 		catalog.addProductInPopup(wait, quantity); 
 		
 		// Step 6: Click the checkout button to proceed with the purchase
