@@ -32,7 +32,7 @@ public class Catalog {
     
     // Step 2
     
-    // Method to click on a specific product
+    // Method to click on a specific product with a specific name
     public void clickProduct(WebDriverWait wait, String productName) {
     	
         // Define the CSS selector for the product link
@@ -63,7 +63,7 @@ public class Catalog {
     // Step 4
     
     // Method to handle popup and click the element to add another product
-    public void addProductInPopup(WebDriverWait wait) throws InterruptedException {
+    public void addProductInPopup(WebDriverWait wait, int quantity) throws InterruptedException {
     	
         // Wait for a few seconds before checking for the popup as it has delay
         Thread.sleep(4000);
@@ -74,8 +74,16 @@ public class Catalog {
 
         // Define the CSS selector of the element, locate and click it
         By addProductSelector = By.cssSelector("div.qty span.bigger");
-        WebElement addProductElement = driver.findElement(addProductSelector);
-        addProductElement.click();
+        
+        // Click the "add more" button as many times as needed to match the desired quantity
+        // Assuming the initial action (add to cart) adds the first item,
+        // so we start the loop from 1 rather than 0.
+        for (int i = 1; i < quantity; i++) {
+            WebElement addProductElement = driver.findElement(addProductSelector);
+            addProductElement.click();
+            // Optionally, add a short wait here if needed to ensure the action is registered
+            Thread.sleep(1000); // Example: wait 1 second between clicks
+        }
     }
     
     // Step 5

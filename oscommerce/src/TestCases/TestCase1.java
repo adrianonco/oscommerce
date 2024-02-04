@@ -109,22 +109,26 @@ class TestCase1{
 		// Initialize a Chrome WebDriver instance for the test
 		createChromeDriver();
 		
-		// Create a new 'Process' object, passing the Chrome WebDriver to handle the test's process flow.
+		// Create a new 'Process' object, passing the Chrome WebDriver to handle the test's process flow
 		Process process = new Process(driverChrome);
 		
 		// Step 1, 2 & 4: Execute the purchase process for the specific product on the indicated website and add 2 items to the cart 
-		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", "2");
+		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", 2);
 		
-		// Step 5: Fetch the quantity of the item from the cart and assert if it matches the expected quantity (2).
-		int quantity = process.fetchQuantityFromCart(); // Call the method in Process
-	    assertEquals(2, quantity); // Perform the assert
+		// Step 5: 
+		// Call the method in Process and fetch the quantity of the item from the cart
+		int quantity = process.fetchQuantityFromCart(); 
+		// Perform the assert and assert if it matches the expected quantity (2)
+	    assertEquals(2, quantity, "The expected quantity does not match the actual quantity in the cart."); 
 	    
 	    // Step 7: Perform the log-in with given credentials
 	    process.login("onco85@hotmail.com", "pass1234");
 	 
-	    // Step 10:Check that the confirmation message is displayed
-	    boolean confirmationDisplayed = process.checkOrderConfirmation(); // Check if the order confirmation message "We've received your order" is displayed on the page
-	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed."); // Assert that the message is displayed and throw a fail message if it is not
+	    // Step 10:
+	    // Check if the order confirmation message "We've received your order" is displayed on the page
+	    boolean confirmationDisplayed = process.checkOrderConfirmation(); 
+	    // Assert that the message is displayed and throw a fail message if it is not
+	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
 	
 	}
 	
@@ -132,19 +136,29 @@ class TestCase1{
 	@Test
 	//A second test of the purchase process by adding and paying the product "Citizen Eco-Drive Silver Tone Men" with quantity "3"
 	void test2() throws InterruptedException {
-	    createFirefoxDriver(); // Ensure Firefox driver is initialized instead of Chrome
-	    process = new Process(driverFirefox); // Use the Firefox driver for the process
 	    
-	    // Execute the purchase process for "Citizen Eco-Drive Silver Tone Men" with quantity "3"
-	    process.purchaseProcess("https://demo.oscommerce.com/watch/", "Citizen Eco-Drive Silver Tone Men", "3");
+		// Ensure Firefox driver is initialized instead of Chrome
+		createFirefoxDriver(); 
+		
+		// Use the Firefox driver for the process
+	    process = new Process(driverFirefox); 
 	    
-	    // Following steps (5, 7, 10) remain the same as they are product and quantity agnostic
+	    // Execute the purchase process for "Citizen Eco-Drive Silver Tone Men" with quantity (3)
+	    process.purchaseProcess("https://demo.oscommerce.com/watch/", "Citizen Eco-Drive Silver Tone Men", 3);
+	    
+	    // Step 5: 
+	 	// Call the method in Process and fetch the quantity of the item from the cart
 	    int quantity = process.fetchQuantityFromCart();
+	    // Perform the assert and assert if it matches the expected quantity (3)
 	    assertEquals(3, quantity, "The expected quantity does not match the actual quantity in the cart.");
 	    
+	    // Step 7: Perform the log-in with given credentials
 	    process.login("onco85@hotmail.com", "pass1234");
-	    
+
+	    // Step 10:
+	    // Check if the order confirmation message "We've received your order" is displayed on the page
 	    boolean confirmationDisplayed = process.checkOrderConfirmation();
+	    // Assert that the message is displayed and throw a fail message if it is not
 	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
 	}
 

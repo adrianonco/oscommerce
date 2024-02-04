@@ -34,7 +34,7 @@ public class Process {
 	}
 	
 	// Method to perform the purchase process for a given product on a specified website
-	public void purchaseProcess(String baseUrl, String product, String quantity) throws InterruptedException {
+	public void purchaseProcess(String baseUrl, String product, int quantity) throws InterruptedException {
 		
 		// Step 1: Navigate to the base URL
 		this.enterSite(baseUrl); 
@@ -46,7 +46,7 @@ public class Process {
 		catalog.clickAddToCartButton(wait); 
 		
 		// Step 4: Handle additional actions in the popup
-		catalog.addProductInPopup(wait); 
+		catalog.addProductInPopup(wait, quantity); 
 		
 		// Step 6: Click the checkout button to proceed with the purchase
 		catalog.clickCheckoutButton(wait);
