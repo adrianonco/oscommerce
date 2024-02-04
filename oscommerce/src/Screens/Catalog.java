@@ -118,7 +118,6 @@ public class Catalog {
         
         // Click it
         myAccountLink.click();
-
     }
 
     // Method to enter the login credentials and click the login button
@@ -134,33 +133,29 @@ public class Catalog {
 
         // Locate and click the login button
         WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
-        loginButton.click();
-        
+        loginButton.click();  
     }
     
- // Method to hover "Shopping Cart" and click the "Checkout" button after login
+    // Method to hover over "Shopping Cart" and click the "Checkout" button after login
     public void hoverAndClickCart(WebDriverWait wait) {
         
-    	// Create an instance of Actions class to perform complex mouse actions
+    	// Create an instance of Actions class to perform mouse actions
         Actions actions = new Actions(driver);
 
-        // Hover over the "Shopping Cart" button
+        // Locate, wait for and hover over the "Shopping Cart" button
         WebElement cartBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-box")));
         actions.moveToElement(cartBox).build().perform();
 
-        // Wait for the "Checkout" button to be clickable after hover action
+        // Wait for the "Checkout" button to be clickable
         WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-box .right-buttons a.btn")));
         
-        // Click the button
-        checkoutButton.click();
-        
+        // Click it
+        checkoutButton.click();  
     }
-    
     
     // Step 8
     
     // Method to click the radio button for payment method
-    
     public void selectPaymentMethod(WebDriverWait wait) {
         
     	// Use a more specific selector to locate the radio button for "Cash on Delivery"
@@ -169,7 +164,7 @@ public class Catalog {
         // Wait for the radio button to be clickable
         WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(radioButtonSelector));
 
-        // Click the radio button
+        // Click it
         radioButton.click();
     }
     
@@ -177,18 +172,17 @@ public class Catalog {
     // Step 9
     
     // Method to fulfill the payment form, confirm and pay
-    
     public void fulfillPaymentForm(WebDriverWait wait) throws InterruptedException {
         
-    	// Wait for 2 seconds before checking the quantity has been updated
+    	// Wait for 2 seconds as there is a delay in the process
         Thread.sleep(2000);
         
-        // Other steps to fill the form can be included here
+        // Other steps to fill the form can be included here if they were not fulfilled in the sign-up
 
-        // Use WebDriverWait to wait for the "Confirm and pay" button to be clickable
+        // Locate and wait for the "Confirm and pay" button to be clickable
         WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
 
-        // Click the “Confirm and pay” button after ensuring it's clickable
+        // Click it
         confirmAndPayButton.click();
     }
     
@@ -197,130 +191,12 @@ public class Catalog {
     
     // Method to verify the order confirmation message
     public boolean isOrderConfirmationDisplayed() {
-        // Directly use 'driver', which is already a member of 'Catalog'
+    	
+    	// Retrieve the HTML source of the page using the driver already initialized
         String pageSource = driver.getPageSource();
+        
+        // Check if the page source contains the specific text and return boolean
         return pageSource.contains("We've received your order");
     }
-
-
-    
-	
-	/*
-	
-	// Step 1: Method to navigate to a URL
-    public void enterSite(String url, WebDriverWait wait) {
-        driver.get(url); // WebDriver navigates to the specified URL
-    }
-
-	public void ClickProduct(String product, WebDriverWait wait) {
-		WebElement productLink = driver.findElement(By.cssSelector("[data-id='29']"));
-	    wait.until(ExpectedConditions.elementToBeClickable(productLink));
-	    productLink.click();
-	}
-	
-	public void addToCart(WebDriverWait wait) {
-	    By addToCartSelector = By.cssSelector(".btn-2.add-to-cart");
-	    
-	    // Wait for the element to be present in the DOM as it sometimes throws NoSuchElementException
-	    wait.until(ExpectedConditions.presenceOfElementLocated(addToCartSelector));
-
-	    WebElement addToCartButton = driver.findElement(addToCartSelector);
-	    wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
-	    addToCartButton.click();
-	}
-	
-	public void waitForPopupAndAddItem(WebDriverWait wait) throws InterruptedException {
-	    // Wait for 4 seconds for the popup to appear
-	    Thread.sleep(4000);  // Using Thread.sleep is generally discouraged, but used here for simplicity
-
-	    WebElement popup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("popup-box-wrap")));
-	    WebElement addItemButton = popup.findElement(By.className("bigger"));
-	    addItemButton.click();
-	}
-	
-	public int getCartQuantity() {
-	    WebElement quantityInput = driver.findElement(By.cssSelector(".qty-inp-s"));
-	    return Integer.parseInt(quantityInput.getAttribute("value"));
-	} 
-	
-	// Step 6
-	
-	public void checkout(WebDriverWait wait) {
-	    WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".popup-box-wrap .btn-2")));
-	    checkoutButton.click();
-
-	    // Wait for a specific element on the new page to appear
-	    By uniqueElementOnNextPage = By.id("uniqueElementId"); // Replace with an actual unique identifier
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(uniqueElementOnNextPage));
-	}
-	
-	/*
-	public void checkout(WebDriverWait wait) {
-	    // Assuming the 'btn-2' button is uniquely identifiable within the popup
-	    WebElement checkoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".popup-box-wrap .btn-2")));
-	    wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
-	    checkoutButton.click();
-	}
-	*/
-	
-	// Step 7
-	
-	/* This works
-	
-	public void navigateToAccountPage(WebDriverWait wait) {
-	    // Wait for the "My account" button to be clickable and click it
-	    WebElement myAccountButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-210238")));
-	    myAccountButton.click();
-
-	    // Wait for a specific element on the login page to ensure it's loaded
-	    // Example: By.id("login-email_address")
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
-	}
-
-	public void login(String email, String password, WebDriverWait wait) {
-	    WebElement emailInput = driver.findElement(By.id("login-email_address"));
-	    WebElement passwordInput = driver.findElement(By.id("login-password"));
-	    WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
-
-	    emailInput.sendKeys(email);
-	    passwordInput.sendKeys(password);
-	    loginButton.click();
-	}
-	
-	/* 
-	// Step 7
-	
-	public void navigateToAccountPage(WebDriverWait wait) {
-	    // Wait for the page to be fully loaded
-	    wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-
-	    // Retry mechanism for clicking the button
-	    final By myAccountSelector = By.id("box-210238");
-	    final int MAX_ATTEMPTS = 3;
-	    for (int attempts = 0; attempts < MAX_ATTEMPTS; attempts++) {
-	        try {
-	            WebElement myAccountButton = wait.until(ExpectedConditions.elementToBeClickable(myAccountSelector));
-	            myAccountButton.click();
-	            break; // Break the loop if click is successful
-	        } catch (ElementClickInterceptedException e) {
-	            if (attempts == MAX_ATTEMPTS - 1) {
-	                throw e; // Rethrow the exception if max attempts are reached
-	            }
-	            // Optionally, add a small delay here if needed
-	        }
-	    }
-	}
-
-	public void login(String email, String password, WebDriverWait wait) {
-	    WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
-	    WebElement passwordInput = driver.findElement(By.id("login-password"));
-	    WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
-
-	    emailInput.sendKeys(email);
-	    passwordInput.sendKeys(password);
-	    loginButton.click();
-	}
-	*/
-	
 
 }
