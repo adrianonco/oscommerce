@@ -132,8 +132,20 @@ class TestCase1{
 	@Test
 	//A second test of the purchase process by adding and paying the product "Citizen Eco-Drive Silver Tone Men" with quantity "3"
 	void test2() throws InterruptedException {
-		createFirefoxDriver();
-		Process process = new Process(driverFirefox);
+	    createFirefoxDriver(); // Ensure Firefox driver is initialized instead of Chrome
+	    process = new Process(driverFirefox); // Use the Firefox driver for the process
+	    
+	    // Execute the purchase process for "Citizen Eco-Drive Silver Tone Men" with quantity "3"
+	    process.purchaseProcess("https://demo.oscommerce.com/watch/", "Citizen Eco-Drive Silver Tone Men", "3");
+	    
+	    // Following steps (5, 7, 10) remain the same as they are product and quantity agnostic
+	    int quantity = process.fetchQuantityFromCart();
+	    assertEquals(3, quantity, "The expected quantity does not match the actual quantity in the cart.");
+	    
+	    process.login("onco85@hotmail.com", "pass1234");
+	    
+	    boolean confirmationDisplayed = process.checkOrderConfirmation();
+	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
 	}
 
 }

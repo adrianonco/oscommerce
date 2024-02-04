@@ -40,7 +40,7 @@ public class Process {
 		this.enterSite(baseUrl); 
 		
 		// Step 2: Click on the specified product
-		catalog.clickProduct(wait); 
+		catalog.clickProduct(wait, product); 
 		
 		// Step 3: Click the "Add to Cart" button
 		catalog.clickAddToCartButton(wait); 

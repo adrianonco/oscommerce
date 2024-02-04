@@ -33,10 +33,10 @@ public class Catalog {
     // Step 2
     
     // Method to click on a specific product
-    public void clickProduct(WebDriverWait wait) {
+    public void clickProduct(WebDriverWait wait, String productName) {
     	
         // Define the CSS selector for the product link
-        By productSelector = By.linkText("Royal London 41003-03"); 
+        By productSelector = By.linkText(productName); 
 
         // Wait for the product link to be clickable
         WebElement productElement = wait.until(ExpectedConditions.elementToBeClickable(productSelector));
