@@ -33,11 +33,11 @@ class TestCase1{
 	private static WebDriver driverFirefox;
 	private static ChromeOptions chromeOptions;
 	private static FirefoxOptions firefoxOptions;
-	private String baseUrl = "https://demo.oscommerce.com/watch/";
+	private String baseUrl = "https://sqademosatp.net/watch/";
 	private Process process; 
 	
 	public static void createAndStartChromeService() throws IOException {
-		WebDriverManager.chromedriver().setup();
+	
   		ArrayList<String> optionsList = new ArrayList<String>();
 		chromeOptions = new ChromeOptions();
 		optionsList.add("--start-maximized");
