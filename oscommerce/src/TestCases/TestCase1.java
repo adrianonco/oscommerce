@@ -113,7 +113,7 @@ class TestCase1{
 		Process process = new Process(driverChrome);
 		
 		// Step 1, 2 & 4: Execute the purchase process for the specific product on the indicated website and add 2 items to the cart 
-		process.purchaseProcess("https://demo.oscommerce.com/watch/", "Royal London 41003-03", 2);
+		process.purchaseProcess("https://sqademosatp.net/watch/", "Royal London 41003-03", 2);
 		
 		// Step 5: 
 		// Call the method in Process and fetch the quantity of the item from the cart
@@ -144,7 +144,7 @@ class TestCase1{
 	    process = new Process(driverFirefox); 
 	    
 	    // Execute the purchase process for "Citizen Eco-Drive Silver Tone Men" with quantity (3)
-	    process.purchaseProcess("https://demo.oscommerce.com/watch/", "Citizen Eco-Drive Silver Tone Men", 3);
+	    process.purchaseProcess("https://sqademosatp.net/watch/", "Citizen Eco-Drive Silver Tone Men", 3);
 	    
 	    // Step 5: 
 	 	// Call the method in Process and fetch the quantity of the item from the cart
