@@ -21,7 +21,7 @@ public class Catalog {
 		PageFactory.initElements(driver, this);
 	}
 	
-	// Step 1
+	// Step 1: Go to website
 	
 	// Method to navigate to a URL
     public void enterSite(String url, WebDriverWait wait) {
@@ -30,7 +30,7 @@ public class Catalog {
         driver.get(url); 
     }
     
-    // Step 2
+    // Step 2: Select the product indicated
     
     // Method to click on a specific product with a specific name
     public void clickProduct(WebDriverWait wait, String productName) {
@@ -42,7 +42,7 @@ public class Catalog {
         productElement.click();
     }
     
-    // Step 3
+    // Step 3: Add to Cart
     
     // Method to wait for and click the "Add to Cart" button
     public void clickAddToCartButton(WebDriverWait wait) {
@@ -54,7 +54,7 @@ public class Catalog {
         addToCartButton.click();
     }
     
-    // Step 4
+    // Step 4: Update quantity
     
     // Method to handle pop-up and click the element to add specified quantity of the product
     public void addProductInPopup(WebDriverWait wait, int quantity) throws InterruptedException {
@@ -80,7 +80,7 @@ public class Catalog {
         }
     }
     
-    // Step 5
+    // Step 5: Assert that quantity
     
     // Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
@@ -95,9 +95,9 @@ public class Catalog {
         return Integer.parseInt(quantityValue);
     }
     
-    // Step 6
+    // Step 6: Checkout
     
-    // Method to click the Continue Shopping button
+    // Method to close the pop-up form
     public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
     	
     	// Wait for 2 seconds as the process has some delay
@@ -105,17 +105,41 @@ public class Catalog {
         
         // Close the pop-up form by clicking the "Continue shopping" button
         WebElement continueShoppingButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-form > .buttons > .left-buttons > .btn")));
+        
+        // Click it
         continueShoppingButton.click();
         
-        /*
-        // Locate the Continue Shopping button and wait for it to be clickable
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("CONTINUE SHOPPING")));
-
-        // Click it
-        checkoutButton.click();
-        */
     }
     
+    // Method to hover over "Shopping Cart" and click the "Checkout" button after login
+    public void hoverAndClickCart(WebDriverWait wait) throws InterruptedException {
+        
+    	// Wait for 2 seconds as the process has some delay
+        Thread.sleep(2000);
+        
+        // Create an instance of Actions class to perform mouse actions
+        Actions actions = new Actions(driver);
+
+        // Locate the cart box and wait for it to be visible
+        WebElement cartBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-box")));
+        
+        // Hover over it
+        actions.moveToElement(cartBox).build().perform();
+
+        // Locate the "Checkout" button and wait for it to be clickable
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-box .right-buttons a.btn")));
+        
+        // Click it
+        checkoutButton.click();  
+        
+        // Click the 'Continue as guest' button
+        WebElement continueAsGuestButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#box-1770 > .btn-2")));
+        
+        // Click it
+        continueAsGuestButton.click();
+    }
+    
+    /*
     // Step 7
     
     // Method to click the "My Account" link
@@ -149,27 +173,10 @@ public class Catalog {
         // Click it
         loginButton.click();  
     }
+    */
     
-    // Method to hover over "Shopping Cart" and click the "Checkout" button after login
-    public void hoverAndClickCart(WebDriverWait wait) {
-        
-    	// Create an instance of Actions class to perform mouse actions
-        Actions actions = new Actions(driver);
-
-        // Locate the cart box and wait for it to be visible
-        WebElement cartBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart-box")));
-        
-        // Hover over it
-        actions.moveToElement(cartBox).build().perform();
-
-        // Locate the "Checkout" button and wait for it to be clickable
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-box .right-buttons a.btn")));
-        
-        // Click it
-        checkoutButton.click();  
-    }
     
-    // Step 8
+    // Step 7: Select “Cash on delivery” payment method
     
     // Method to click the radio button for payment method
     public void selectPaymentMethod(WebDriverWait wait) {
@@ -181,7 +188,7 @@ public class Catalog {
         radioButton.click();
     }
     
-    // Step 9
+    // Step 8: Complete the payment
     
     // Method to fulfill the payment form, confirm and pay
     public void fulfillPaymentForm(WebDriverWait wait) throws InterruptedException {
@@ -199,7 +206,7 @@ public class Catalog {
     }
     
     
-    // Step 10
+    // Step 9: Check the success message
     
     // Method to verify the order confirmation message
     public boolean isOrderConfirmationDisplayed() {

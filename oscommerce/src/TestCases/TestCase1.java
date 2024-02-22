@@ -121,8 +121,10 @@ class TestCase1{
 		// Perform the assert and assert if it matches the expected quantity (2)
 	    assertEquals(2, quantity, "The expected quantity does not match the actual quantity in the cart."); 
 	    
+	    /*
 	    // Step 7: Perform the log-in with given credentials
 	    process.login("onco85@hotmail.com", "pass1234");
+	    */
 	 
 	    // Step 10:
 	    // Check if the order confirmation message "We've received your order" is displayed on the page
@@ -152,8 +154,10 @@ class TestCase1{
 	    // Perform the assert and assert if it matches the expected quantity (3)
 	    assertEquals(3, quantity, "The expected quantity does not match the actual quantity in the cart.");
 	    
+	    /*
 	    // Step 7: Perform the log-in with given credentials
 	    process.login("onco85@hotmail.com", "pass1234");
+	    */
 
 	    // Step 10:
 	    // Check if the order confirmation message "We've received your order" is displayed on the page

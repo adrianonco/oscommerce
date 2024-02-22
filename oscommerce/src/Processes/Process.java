@@ -50,6 +50,15 @@ public class Process {
 		
 		// Step 6: Click the checkout button to proceed with the purchase
 		catalog.clickCheckoutButton(wait);
+		
+		// Perform hover and click checkout button
+	    catalog.hoverAndClickCart(wait); 
+	    
+	    // Click on the desired radio button
+	    catalog.selectPaymentMethod(wait);
+	    
+	    // Complete the form and confirm payment
+        catalog.fulfillPaymentForm(wait); 
 	}
 	
 	// Step 5
@@ -61,10 +70,12 @@ public class Process {
 	    return catalog.getQuantityFromInput(wait); 
 	}
 	
+	/*
 	// Step 7
 	
 	// Method to perform the login process and come back to checkout
 	public void login(String email, String password) throws InterruptedException {
+		
 		
 		// Click on the "My Account" link
 	    catalog.clickMyAccountLink(wait); 
@@ -72,15 +83,10 @@ public class Process {
 	    // Enter login credentials and submit
 	    catalog.enterLoginCredentialsAndLogin(email, password, wait); 
 	    
-	    // Perform hover and click checkout button
-	    catalog.hoverAndClickCart(wait); 
 	    
-	    // Click on the desired radio button
-	    catalog.selectPaymentMethod(wait);
-	    
-	    // Complete the form and confirm payment
-        catalog.fulfillPaymentForm(wait); 
-    }
+
+    } */
+	
     
     // Step 10
     
