@@ -56,10 +56,10 @@ public class Catalog {
     
     // Step 4
     
-    // Method to handle popup and click the element to add specified quantity of the product
+    // Method to handle pop-up and click the element to add specified quantity of the product
     public void addProductInPopup(WebDriverWait wait, int quantity) throws InterruptedException {
     	
-        // Wait for a few seconds before checking for the popup as it has delay
+        // Wait for a few seconds before checking for the pop-up as it has delay
         Thread.sleep(4000);
 
         // Locate the popup and wait for it to be visible
@@ -97,17 +97,23 @@ public class Catalog {
     
     // Step 6
     
-    // Method to click the checkout button
+    // Method to click the Continue Shopping button
     public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
     	
     	// Wait for 2 seconds as the process has some delay
         Thread.sleep(2000);
         
-        // Locate the checkout button and wait for it to be clickable
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("GO TO CART")));
+        // Close the pop-up form by clicking the "Continue shopping" button
+        WebElement continueShoppingButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cart-form > .buttons > .left-buttons > .btn")));
+        continueShoppingButton.click();
+        
+        /*
+        // Locate the Continue Shopping button and wait for it to be clickable
+        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("CONTINUE SHOPPING")));
 
         // Click it
         checkoutButton.click();
+        */
     }
     
     // Step 7
