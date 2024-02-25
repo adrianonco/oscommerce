@@ -113,22 +113,30 @@ class TestCase1{
 		Process process = new Process(driverChrome);
 		
 		// Step 1, 2 & 4: Execute the purchase process for the specific product on the indicated website and add 2 items to the cart 
+		
+		/*
 		String productName = "Royal London 41003-03";
 	    int expectedQuantity = 2; // Define expected quantity for the assertion
 
 	    // Execute the purchase process
 	    process.purchaseProcess("https://sqademosatp.net/watch/", productName, expectedQuantity);
-		
-	    /*
-		process.purchaseProcess("https://sqademosatp.net/watch/", "Royal London 41003-03", 2);
 		*/
 	    
+		process.purchaseProcess("https://sqademosatp.net/watch/", "Royal London 41003-03", 2);
+		
+	    
 		// Step 5: 
+	    
+	    int actualQuantity = process.fetchQuantityFromInput();
+	    assertEquals(2, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
+	    
+	    /*
 		// Fetch the actual quantity from the input field using the new Process method
 	    int actualQuantity = process.fetchQuantityFromInput();
 	    
 	    // Assert that actual quantity matches expected quantity
 	    assertEquals(expectedQuantity, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
+		*/
 		/*
 		// Call the method in Process and fetch the quantity of the item from the cart
 		int quantity = process.fetchQuantityFromCart(); 

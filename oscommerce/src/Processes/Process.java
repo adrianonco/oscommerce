@@ -48,7 +48,33 @@ public class Process {
 		// Step 4: Add quantity of product dynamically
 		catalog.addProductInPopup(wait, quantity); 
 		
-		// Step 6: Checkout process
+		fetchQuantityFromInput();
+		
+		proceedToCheckout();
+		
+	}
+	
+	// Method to fetch the quantity from the input form
+    public int fetchQuantityFromInput() {
+        
+    	// Step 5:
+    	// Delegate the call to the catalog's method to retrieve the visible quantity
+        return catalog.getVisibleQuantity(wait);
+        
+    }
+		
+        /*
+		// Step 5:
+		int actualQuantity = fetchQuantityFromInput(); // Adjusted to call fetchQuantityFromInput here
+	    // You would then use actualQuantity for assertion in the test method, not here directly
+		*/
+    
+        // Method to encapsulate the checkout process
+        public void proceedToCheckout() throws InterruptedException {
+		
+        	// Step 6: Checkout process
+        
+        
 		
 		// Click the checkout button to proceed with the purchase
 		catalog.closePopUp(wait);
@@ -60,11 +86,13 @@ public class Process {
 	    catalog.selectPaymentMethod(wait);
 	}
 	
+	/*
 	// Step 5: Assert specified quantities
 	public int fetchQuantityFromInput() {
 	    // Delegate the call to the catalog's method and return its result
 	    return catalog.getVisibleQuantity(new WebDriverWait(driver, Duration.ofSeconds(10)));
 	}
+	*/
 	
 	/*
 	// Method to get the quantity from the Catalog class and return it
