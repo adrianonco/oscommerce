@@ -108,7 +108,7 @@ public class Process {
     // Step 9: Check success message
     
     // Method to check the order confirmation message
-	public boolean checkOrderConfirmation() {
+	public boolean checkOrderConfirmation() throws InterruptedException {
 		
 	    // Call the method from 'Catalog' to check it and return if it is true or false
 	    return catalog.isOrderConfirmationDisplayed();

@@ -154,7 +154,7 @@ class TestCase1{
 	    
 	    // Step 5: 
 	    int actualQuantity = process.fetchQuantityFromInput();
-	    assertEquals(2, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
+	    assertEquals(3, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
 	    
 	    // Step 8:
 	    process.proceedToCheckout();

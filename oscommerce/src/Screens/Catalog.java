@@ -197,7 +197,10 @@ public class Catalog {
     // Step 9: Check the success message
     
     // Method to verify the order confirmation message
-    public boolean isOrderConfirmationDisplayed() {
+    public boolean isOrderConfirmationDisplayed() throws InterruptedException {
+    	
+    	// Wait for 2 seconds as there is a delay in the process
+        Thread.sleep(10000);
     	
     	// Retrieve the HTML source of the page using the driver already initialized
         String pageSource = driver.getPageSource();
