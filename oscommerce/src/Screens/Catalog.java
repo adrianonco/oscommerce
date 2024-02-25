@@ -182,13 +182,15 @@ public class Catalog {
         postField.sendKeys(postcode);
         WebElement cityField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-city")));
         cityField.sendKeys(city);
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-email")));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout-email_address")));
         emailField.sendKeys(email);
         
-        // Locate the "Confirm and pay" button and wait for it to be clickable
+        // Locate the "Terms" checkbox, wait for it to be clickable and click it
+        WebElement termsCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout-terms")));
+        termsCheckbox.click();
+        
+        // Locate the "Confirm and pay" button, wait for it to be clickable and click it
         WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
-
-        // Click it
         confirmAndPayButton.click();
     }
     
