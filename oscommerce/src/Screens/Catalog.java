@@ -3,14 +3,10 @@ package Screens;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 
 public class Catalog {
 	
@@ -82,16 +78,6 @@ public class Catalog {
     
     // Step 5: Assert that quantity
     
-    /*
-    public int getVisibleQuantity(WebDriverWait webDriverWait) {
-        // Directly use the driver to find the element
-        String quantityText = driver.findElement(By.cssSelector("input.qty-inp-s")).getAttribute("value");
-        // Assuming the quantity is in the value attribute; if it's text within the element, use getText()
-        return Integer.parseInt(quantityText.trim());
-    }
-    */
-    
-    
     // Method to assert the quantity from the input form
     public int getVisibleQuantity(WebDriverWait wait) {
     	
@@ -104,8 +90,6 @@ public class Catalog {
         // Convert the string value to an integer in order to be asserted in Test class
         return Integer.parseInt(quantityValue);
     }
-   
-    
     
     // Step 6: Checkout
     
@@ -171,19 +155,28 @@ public class Catalog {
     	// Wait for 2 seconds as there is a delay in the process
         Thread.sleep(2000);
         
-        // Other steps to fill the form can be included here if they were not fulfilled in the sign-up
+        // Wait for the input fields to be visible and fill them with the provided data
         WebElement firstNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-firstname")));
         firstNameField.sendKeys(firstName);
+        
         WebElement lastNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-lastname")));
         lastNameField.sendKeys(lastName);
+       
         WebElement streetField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-street_address")));
         streetField.sendKeys(streetAddress);
+        
         WebElement postField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-postcode")));
         postField.sendKeys(postcode);
+        
         WebElement cityField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-city")));
         cityField.sendKeys(city);
+        
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout-email_address")));
         emailField.sendKeys(email);
+        
+        // Locate the radio button for "Cash on Delivery" as it is being modified, wait for the radio button to be clickable and click it
+        WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='radio'][name='payment'][value='cod']")));
+        radioButton.click();
         
         // Locate the "Terms" checkbox, wait for it to be clickable and click it
         WebElement termsCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout-terms")));
@@ -199,7 +192,7 @@ public class Catalog {
     // Method to verify the order confirmation message
     public boolean isOrderConfirmationDisplayed() throws InterruptedException {
     	
-    	// Wait for 2 seconds as there is a delay in the process
+    	// Wait for 10 seconds as there is a delay in the process
         Thread.sleep(10000);
     	
     	// Retrieve the HTML source of the page using the driver already initialized

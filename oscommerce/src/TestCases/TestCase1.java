@@ -115,21 +115,32 @@ class TestCase1{
 		// Initialize WebDriverWait
 		WebDriverWait wait = new WebDriverWait(driverChrome, Duration.ofSeconds(10));
 		
-		// Step 1, 2 & 4: Execute the purchase process for the specified product and its quantity
+		// Step 1, 2 & 4: Purchase Process
+		
+		// Execute the purchase process for the specified product and its quantity
 		process.purchaseProcess("https://sqademosatp.net/watch/", "Royal London 41003-03", 2);
 	    
-		// Step 5: 
-	    int actualQuantity = process.fetchQuantityFromInput();
-	    assertEquals(2, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
-	    
+		// Step 5: Assert the specified product's quantity
 		
-		// Step 8:
+		// Fetch the actual quantity of the product from the cart
+	    int actualQuantity = process.fetchQuantityFromInput();
+	    
+	    // Assert if it matches the expected quantity
+	    assertEquals(2, actualQuantity, "The expected quantity does not match the actual quantity in the cart.");
+		
+		// Step 8: Checkout
+	    
+	    // Proceed with the checkout process
 	    process.proceedToCheckout();
+	    
+	    // Fill in the payment form with the provided user details and submit the form
 	    process.fillPaymentFormProcess(wait, "John", "Doe", "123 Elm St", "12345", "Anytown", "john.doe@example.com");
 	    
 	    // Step 10:
+	    
 	    // Check if the order confirmation message "We've received your order" is displayed on the page
 	    boolean confirmationDisplayed = process.checkOrderConfirmation(); 
+	    
 	    // Assert that the message is displayed and throw a fail message if it is not
 	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
 	

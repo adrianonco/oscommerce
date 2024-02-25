@@ -48,30 +48,22 @@ public class Process {
 		// Step 4: Add quantity of product dynamically
 		catalog.addProductInPopup(wait, quantity); 
 	
-		
 	}
+	
+	// Step 5: Assert the specified product's quantity
 	
 	// Method to fetch the quantity from the input form
     public int fetchQuantityFromInput() {
         
-    	// Step 5:
     	// Delegate the call to the catalog's method to retrieve the visible quantity
         return catalog.getVisibleQuantity(wait);
         
     }
-		
-        /*
-		// Step 5:
-		int actualQuantity = fetchQuantityFromInput(); // Adjusted to call fetchQuantityFromInput here
-	    // You would then use actualQuantity for assertion in the test method, not here directly
-		*/
     
-        // Method to encapsulate the checkout process
-        public void proceedToCheckout() throws InterruptedException {
-		
-        	// Step 6: Checkout process
-        
-        
+    // Step 6: Checkout process
+    
+    // Method to encapsulate the checkout process
+     public void proceedToCheckout() throws InterruptedException {
 		
 		// Click the checkout button to proceed with the purchase
 		catalog.closePopUp(wait);
@@ -83,26 +75,13 @@ public class Process {
 	    catalog.selectPaymentMethod(wait);
 	}
 	
-	/*
-	// Step 5: Assert specified quantities
-	public int fetchQuantityFromInput() {
-	    // Delegate the call to the catalog's method and return its result
-	    return catalog.getVisibleQuantity(new WebDriverWait(driver, Duration.ofSeconds(10)));
-	}
-	*/
-	
-	/*
-	// Method to get the quantity from the Catalog class and return it
-	public int fetchQuantityFromCart() {
-		
-		// Get the quantity from the input form
-	    return catalog.getQuantityFromInput(wait); 
-	}
-	*/
-	
-	// Step 8: 
+	// Step 8: Checkout process
+     
+    // Method to fill in and submit the payment form with the provided user details
 	public void fillPaymentFormProcess(WebDriverWait wait, String firstName, String lastName, String streetAddress, String postcode, String city, String email) throws InterruptedException {
-	    catalog.fillPaymentForm(wait, firstName, lastName, streetAddress, postcode, city, email);
+	    
+		// Delegate to the Catalog class's method to input the user's information into the payment form fields and submit the form
+		catalog.fillPaymentForm(wait, firstName, lastName, streetAddress, postcode, city, email);
 	}
     
     // Step 9: Check success message
