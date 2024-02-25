@@ -61,13 +61,19 @@ public class Process {
 	}
 	
 	// Step 5: Assert specified quantities
+	public int fetchQuantityFromInput() {
+	    // Delegate the call to the catalog's method and return its result
+	    return catalog.getVisibleQuantity(new WebDriverWait(driver, Duration.ofSeconds(10)));
+	}
 	
+	/*
 	// Method to get the quantity from the Catalog class and return it
 	public int fetchQuantityFromCart() {
 		
 		// Get the quantity from the input form
 	    return catalog.getQuantityFromInput(wait); 
 	}
+	*/
 	
 	// Step 8: 
 	public void fillPaymentFormProcess(WebDriverWait wait, String firstName, String lastName, String streetAddress, String postcode, String city, String email) throws InterruptedException {

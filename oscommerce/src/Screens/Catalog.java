@@ -82,6 +82,14 @@ public class Catalog {
     
     // Step 5: Assert that quantity
     
+    public int getVisibleQuantity(WebDriverWait webDriverWait) {
+        // Directly use the driver to find the element
+        String quantityText = driver.findElement(By.cssSelector("input.qty-inp-s")).getAttribute("value");
+        // Assuming the quantity is in the value attribute; if it's text within the element, use getText()
+        return Integer.parseInt(quantityText.trim());
+    }
+    
+    /*
     // Method to assert the quantity from the input form
     public int getQuantityFromInput(WebDriverWait wait) {
     	
@@ -94,6 +102,7 @@ public class Catalog {
         // Convert the string value to an integer in order to be asserted in Test class
         return Integer.parseInt(quantityValue);
     }
+    */
     
     // Step 6: Checkout
     
