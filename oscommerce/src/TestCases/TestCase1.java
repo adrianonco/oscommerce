@@ -1,6 +1,7 @@
 package TestCases;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterAll;
@@ -19,10 +20,9 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 import Processes.Process;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,8 +49,7 @@ class TestCase1{
 		
 		chromeOptions.addArguments(optionsList);
 		chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS,true);
-
-
+		
 	}
 	
 	public static void createAndStartFirefoxService() throws IOException {
@@ -78,6 +77,7 @@ class TestCase1{
 		  if (driverFirefox!=null)driverFirefox.quit();
 		  driverChrome=null;
 		  driverFirefox=null;
+		  
 	}
 	
 
@@ -121,10 +121,12 @@ class TestCase1{
 		// Perform the assert and assert if it matches the expected quantity (2)
 	    assertEquals(2, quantity, "The expected quantity does not match the actual quantity in the cart."); 
 	    
-	    /*
-	    // Step 7: Perform the log-in with given credentials
-	    process.login("onco85@hotmail.com", "pass1234");
-	    */
+		// Step 8:
+	    // Directly pass user details to the method without using a User object.
+	    WebDriverWait wait = new WebDriverWait(driverChrome, Duration.ofSeconds(10)); // Assuming driverChrome is your WebDriver instance
+	    process.fillPaymentFormProcess(wait, "Pepe", "Pérez", "Avda. Diagonal", "08013", "Barcelona", "example@example.com");
+
+	    // Further actions or assertions to validate the filling process.
 	 
 	    // Step 10:
 	    // Check if the order confirmation message "We've received your order" is displayed on the page
@@ -154,19 +156,22 @@ class TestCase1{
 	    // Perform the assert and assert if it matches the expected quantity (3)
 	    assertEquals(3, quantity, "The expected quantity does not match the actual quantity in the cart.");
 	    
-	    /*
+	    
 	    // Step 7: Perform the log-in with given credentials
-	    process.login("onco85@hotmail.com", "pass1234");
-	    */
+	    
 
 	    // Step 10:
 	    // Check if the order confirmation message "We've received your order" is displayed on the page
 	    boolean confirmationDisplayed = process.checkOrderConfirmation();
 	    // Assert that the message is displayed and throw a fail message if it is not
 	    assertTrue(confirmationDisplayed, "Order confirmation message was not displayed.");
+	
 	}
-
+	
 }
+
+
+
 
 
 

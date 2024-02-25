@@ -48,20 +48,19 @@ public class Process {
 		// Step 4: Add quantity of product dynamically
 		catalog.addProductInPopup(wait, quantity); 
 		
-		// Step 6: Click the checkout button to proceed with the purchase
-		catalog.clickCheckoutButton(wait);
+		// Step 6: Checkout process
+		
+		// Click the checkout button to proceed with the purchase
+		catalog.closePopUp(wait);
 		
 		// Perform hover and click checkout button
-	    catalog.hoverAndClickCart(wait); 
+		catalog.hoverAndClickCart(wait); 
 	    
-	    // Click on the desired radio button
+	    // Step 7: Click on the desired radio button
 	    catalog.selectPaymentMethod(wait);
-	    
-	    // Complete the form and confirm payment
-        catalog.fulfillPaymentForm(wait); 
 	}
 	
-	// Step 5
+	// Step 5: Assert specified quantities
 	
 	// Method to get the quantity from the Catalog class and return it
 	public int fetchQuantityFromCart() {
@@ -70,25 +69,12 @@ public class Process {
 	    return catalog.getQuantityFromInput(wait); 
 	}
 	
-	/*
-	// Step 7
-	
-	// Method to perform the login process and come back to checkout
-	public void login(String email, String password) throws InterruptedException {
-		
-		
-		// Click on the "My Account" link
-	    catalog.clickMyAccountLink(wait); 
-	    
-	    // Enter login credentials and submit
-	    catalog.enterLoginCredentialsAndLogin(email, password, wait); 
-	    
-	    
-
-    } */
-	
+	// Step 8: 
+	public void fillPaymentFormProcess(WebDriverWait wait, String firstName, String lastName, String streetAddress, String postcode, String city, String email) throws InterruptedException {
+	    catalog.fillPaymentForm(wait, firstName, lastName, streetAddress, postcode, city, email);
+	}
     
-    // Step 10
+    // Step 9: Check success message
     
     // Method to check the order confirmation message
 	public boolean checkOrderConfirmation() {
@@ -96,5 +82,4 @@ public class Process {
 	    // Call the method from 'Catalog' to check it and return if it is true or false
 	    return catalog.isOrderConfirmationDisplayed();
 	}
-
 }

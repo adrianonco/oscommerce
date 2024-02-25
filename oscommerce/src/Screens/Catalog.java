@@ -86,7 +86,7 @@ public class Catalog {
     public int getQuantityFromInput(WebDriverWait wait) {
     	
         // Locate the input form and wait for it to be visible
-        WebElement quantityInputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.qty-inp-s")));
+        WebElement quantityInputElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".qty-inp-s")));
 
         // Retrieve the value attribute from the input form element as a string as retrieving an integer is not possible
         String quantityValue = quantityInputElement.getAttribute("value");
@@ -98,7 +98,7 @@ public class Catalog {
     // Step 6: Checkout
     
     // Method to close the pop-up form
-    public void clickCheckoutButton(WebDriverWait wait) throws InterruptedException {
+    public void closePopUp(WebDriverWait wait) throws InterruptedException {
     	
     	// Wait for 2 seconds as the process has some delay
         Thread.sleep(2000);
@@ -111,7 +111,7 @@ public class Catalog {
         
     }
     
-    // Method to hover over "Shopping Cart" and click the "Checkout" button after login
+    // Method to hover over "Shopping Cart", click the "Checkout" button and continue as "Guest"
     public void hoverAndClickCart(WebDriverWait wait) throws InterruptedException {
         
     	// Wait for 2 seconds as the process has some delay
@@ -139,43 +139,6 @@ public class Catalog {
         continueAsGuestButton.click();
     }
     
-    /*
-    // Step 7
-    
-    // Method to click the "My Account" link
-    public void clickMyAccountLink(WebDriverWait wait) {
-    	
-    	// Locate the link and wait for it to be clickable
-        WebElement myAccountLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.my-acc-link")));
-        
-        // Click it
-        myAccountLink.click();
-    }
-
-    // Method to enter the login credentials and click the login button
-    public void enterLoginCredentialsAndLogin(String email, String password, WebDriverWait wait) {
-
-        // Locate the email input and wait for it to be visible
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-email_address")));
-        
-        // Enter email
-        emailInput.sendKeys(email);
-
-        // Locate the password input
-        WebElement passwordInput = driver.findElement(By.id("login-password"));
-        
-        // Enter password
-        passwordInput.sendKeys(password);
-
-        // Locate the login button
-        WebElement loginButton = driver.findElement(By.cssSelector(".btn-2"));
-        
-        // Click it
-        loginButton.click();  
-    }
-    */
-    
-    
     // Step 7: Select “Cash on delivery” payment method
     
     // Method to click the radio button for payment method
@@ -191,20 +154,31 @@ public class Catalog {
     // Step 8: Complete the payment
     
     // Method to fulfill the payment form, confirm and pay
-    public void fulfillPaymentForm(WebDriverWait wait) throws InterruptedException {
+    public void fillPaymentForm(WebDriverWait wait, String firstName, String lastName, String streetAddress, String postcode, String city, String email) throws InterruptedException {
         
     	// Wait for 2 seconds as there is a delay in the process
         Thread.sleep(2000);
         
         // Other steps to fill the form can be included here if they were not fulfilled in the sign-up
-
+        WebElement firstNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-firstname")));
+        firstNameField.sendKeys(firstName);
+        WebElement lastNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-lastname")));
+        lastNameField.sendKeys(lastName);
+        WebElement streetField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-street_address")));
+        streetField.sendKeys(streetAddress);
+        WebElement postField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-postcode")));
+        postField.sendKeys(postcode);
+        WebElement cityField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-city")));
+        cityField.sendKeys(city);
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("shipping_address-email")));
+        emailField.sendKeys(email);
+        
         // Locate the "Confirm and pay" button and wait for it to be clickable
         WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
 
         // Click it
         confirmAndPayButton.click();
     }
-    
     
     // Step 9: Check the success message
     
