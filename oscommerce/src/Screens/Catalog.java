@@ -190,7 +190,7 @@ public class Catalog {
         termsCheckbox.click();
         
         // Locate the "Confirm and pay" button, wait for it to be clickable and click it
-        WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("box-209382")));
+        WebElement confirmAndPayButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-2.btn-next")));
         confirmAndPayButton.click();
     }
     
