@@ -47,10 +47,7 @@ public class Process {
 		
 		// Step 4: Add quantity of product dynamically
 		catalog.addProductInPopup(wait, quantity); 
-		
-		fetchQuantityFromInput();
-		
-		proceedToCheckout();
+	
 		
 	}
 	

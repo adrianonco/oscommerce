@@ -112,6 +112,8 @@ class TestCase1{
 		// Create a new 'Process' object, passing the Chrome WebDriver to handle the test's process flow
 		Process process = new Process(driverChrome);
 		
+		WebDriverWait wait = new WebDriverWait(driverChrome, Duration.ofSeconds(10)); // Initialize WebDriverWait here
+		
 		// Step 1, 2 & 4: Execute the purchase process for the specific product on the indicated website and add 2 items to the cart 
 		
 		/*
@@ -145,10 +147,16 @@ class TestCase1{
 	    */
 		
 		// Step 8:
+	    
+	    process.proceedToCheckout(); // Make sure this is appropriately timed
+	    process.fillPaymentFormProcess(wait, "John", "Doe", "123 Elm St", "12345", "Anytown", "john.doe@example.com"); // Step 8
+	    
+	    /*
 	    // Directly pass user details to the method without using a User object.
 	    WebDriverWait wait = new WebDriverWait(driverChrome, Duration.ofSeconds(10)); // Assuming driverChrome is your WebDriver instance
 	    process.fillPaymentFormProcess(wait, "Pepe", "Pérez", "Avda. Diagonal", "08013", "Barcelona", "example@example.com");
-
+		*/
+	    
 	    // Further actions or assertions to validate the filling process.
 	 
 	    // Step 10:
