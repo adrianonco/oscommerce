@@ -33,7 +33,14 @@ public class Process {
 		driver.get(url);
 	}
 	
-	// Method to perform the purchase process for a given product on a specified website
+	/**
+	 * Performs the purchase process for a given product on a specified website.
+	 * 
+	 * @param baseUrl the base URL of the website
+	 * @param product the product to purchase
+	 * @param quantity the quantity of the product
+	 * @throws InterruptedException if the thread is interrupted during the process
+	 */
 	public void purchaseProcess(String baseUrl, String product, int quantity) throws InterruptedException {
 		
 		// Step 1: Navigate to the base URL
