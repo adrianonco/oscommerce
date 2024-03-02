@@ -58,27 +58,22 @@ class TestCase1{
 		optionsList.add("-private");
 		
 		firefoxOptions.addArguments(optionsList);
-
 	}
 	
 	public static void createChromeDriver() {
 		driverChrome = new ChromeDriver(chromeOptions);
-
 	}
 	
 	public static void createFirefoxDriver() {
 		driverFirefox = new FirefoxDriver(firefoxOptions);
-
 	}
 	
 	public static void quitDrivers() {
 		  if (driverChrome!=null) driverChrome.quit();
 		  if (driverFirefox!=null)driverFirefox.quit();
 		  driverChrome=null;
-		  driverFirefox=null;
-		  
+		  driverFirefox=null;  
 	}
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
