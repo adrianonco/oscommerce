@@ -1,11 +1,11 @@
-package Processes;
+package processes;
 
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Screens.Catalog;
+import screens.Catalog;
 
 public class Process {
 	private static final Duration ESPERA = Duration.ofSeconds(50);

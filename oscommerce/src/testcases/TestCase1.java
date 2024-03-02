@@ -1,4 +1,4 @@
-package TestCases;
+package testcases;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -21,8 +21,10 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import Processes.Process;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import processes.Process;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
