@@ -150,7 +150,8 @@ public class Catalog {
     // Step 8: Complete the payment
     
     // Method to fulfill the payment form, confirm and pay
-    public void fillPaymentForm(WebDriverWait wait, String firstName, String lastName, String streetAddress, String postcode, String city, String email) throws InterruptedException {
+    public void fillPaymentForm(WebDriverWait wait, String firstName, String lastName, 
+    		String streetAddress, String postcode, String city, String email) throws InterruptedException {
         
     	// Wait for 2 seconds as there is a delay in the process
         Thread.sleep(2000);
